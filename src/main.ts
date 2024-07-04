@@ -14,7 +14,7 @@ export async function run(): Promise<void> {
     console.log(`Got the following inputs`, JSON.stringify(inputs));
     console.log(`Got the following environment variables`, JSON.stringify(process.env));
 
-    const latestPipelineExecution = exec.getExecOutput(`aws codepipeline list-pipeline-executions --pipeline-name ${inputs.pipeline_name} | jq .[][0]`)
+    const latestPipelineExecution = exec.getExecOutput("aws", ["codepipeline", "list-pipeline-executions", `--pipeline-name ${inputs.pipeline_name}`])
     console.log(JSON.stringify(latestPipelineExecution));
 
     core.setOutput("execution_id", "execution-123");
