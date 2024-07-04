@@ -1,6 +1,7 @@
 import { getActionInputs } from './helpers'
 import { ActionInput } from './types'
 import * as core from '@actions/core'
+import * as exec from '@actions/exec'
 
 /**
  * The main function for the action.
@@ -12,6 +13,9 @@ export async function run(): Promise<void> {
 
     console.log(`Got the following inputs`, JSON.stringify(inputs));
     console.log(`Got the following environment variables`, JSON.stringify(process.env));
+
+    const latestPipelineExecution = exec.getExecOutput(`aws codepipeline list-pipeline-executions --pipeline-name ${inputs.pipeline_name} | jq .[][0]`)
+    console.log(JSON.stringify(latestPipelineExecution));
 
     core.setOutput("execution_id", "execution-123");
     core.setOutput('status', "SUCCESS" );

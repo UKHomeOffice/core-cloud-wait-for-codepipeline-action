@@ -8,6 +8,9 @@ inputs:
     required: true
   wait_for_status:
     description: 'The pipeline execution status to wait for. If not specified it will wait for SUCCESS or FAILURE'
+  pipeline_name:
+    description: 'The name of the pipeline'
+    default: AWSAccelerator-Pipeline
 
 outputs:
   execution_id:

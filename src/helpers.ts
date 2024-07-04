@@ -4,7 +4,8 @@ import * as core from '@actions/core'
 export const getActionInputs = (): ActionInput => {
   const variables: ActionInputParam[] = [
     { name: 'commit_sha', options: { required: true } },
-    { name: 'wait_for_status', options: { required: false } }
+    { name: 'wait_for_status', options: { required: false } },
+    { name: 'pipeline_name', options: {required: false }}
   ]
 
   return variables.reduce((obj, variable) => {
