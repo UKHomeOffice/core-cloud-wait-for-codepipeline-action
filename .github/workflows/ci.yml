@@ -1,0 +1,79 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test-typescript:
+    name: TypeScript Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install Dependencies
+        id: npm-ci
+        run: npm ci
+
+      - name: Check Format
+        id: npm-format-check
+        run: npm run format:check
+
+      - name: Lint
+        id: npm-lint
+        run: npm run lint
+
+      - name: Test
+        id: npm-ci-test
+        run: npm run ci-test
+
+  test-action:
+    name: GitHub Actions Test
+    runs-on: ubuntu-latest
+
+    env:
+      FOLDER_PATH: __tests__/files/tmp/
+      ACCOUNTS_FILE_PATH: __tests__/files/tmp/accounts-config.yaml
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Files
+        env:
+          EMPTY_ACCOUNTS_FILE_PATH: __tests__/files/account/empty.yaml
+        run: |
+          mkdir -p ${{ env.FOLDER_PATH }}/terraform
+          cp ${{ env.EMPTY_ACCOUNTS_FILE_PATH }} ${{ env.ACCOUNTS_FILE_PATH }}
+          git add ${{ env.FOLDER_PATH }}/*
+          git -c user.name='Dummy' -c user.email='dummy@example.com' commit --all -m "Diff Dummy"
+
+      - name: Test Local Action
+        id: test-action
+        uses: ./
+        with:
+          folder_path: ${{ env.FOLDER_PATH }}
+          customer_id: test
+          spoc_email: test@example.com
+          organisational_units: test
+
+      - name: Check diff output
+        run: |
+          diff=$(git diff --name-only)
+          echo "$diff" | grep ${{ env.ACCOUNTS_FILE_PATH }} || exit 1

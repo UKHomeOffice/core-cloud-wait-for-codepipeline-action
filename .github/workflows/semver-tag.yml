@@ -1,0 +1,13 @@
+name: 'Semver Tag'
+on:
+  pull_request:
+    types: [ closed ]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  semver-tag-repository:
+    name: Semver Tag Repository
+    uses: UKHomeOffice/sas-github-workflows/.github/workflows/semver-tag.yml@v2

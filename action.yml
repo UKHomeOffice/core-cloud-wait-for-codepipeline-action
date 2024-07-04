@@ -1,0 +1,20 @@
+name: 'core-cloud-wait-for-codepipeline-action'
+description: 'GitHub Action to wait for Code Pipeline'
+author: 'ukhomeoffice'
+
+inputs:
+  commit_sha:
+    description: 'The commit sha to wait for'
+    required: true
+  wait_for_status:
+    description: 'The pipeline execution status to wait for. If not specified it will wait for SUCCESS or FAILURE'
+
+outputs:
+  execution_id:
+    description: 'The execution Id of the pipeline'
+  status:
+    description: 'The status of the code pipeline execution'
+
+runs:
+  using: node20
+  main: dist/index.js
