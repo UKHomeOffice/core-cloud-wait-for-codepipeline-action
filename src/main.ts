@@ -13,7 +13,7 @@ export async function run(): Promise<void> {
 
     console.log(`Got the following inputs`, JSON.stringify(inputs));
 
-    const latestPipelineExecution = exec.getExecOutput("aws", ["codepipeline", `list-pipeline-executions`, `--pipeline-name` , `AWSAccelerator-Pipeline`])
+    const latestPipelineExecution = exec.getExecOutput("aws", ["codepipeline list-pipeline-executions '--pipeline-name AWSAccelerator-Pipeline'"])
     console.log(JSON.stringify(latestPipelineExecution));
 
     core.setOutput("execution_id", "execution-123");
