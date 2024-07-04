@@ -1,0 +1,25 @@
+{
+  "pipelineExecutionId": "4d88a394-79d9-4b3a-b0c7-4882bdacf4c4",
+  "status": "Succeeded",
+  "startTime": "2024-07-04T08:45:44.823000+00:00",
+  "lastUpdateTime": "2024-07-04T09:41:25.081000+00:00",
+  "sourceRevisions": [
+    {
+      "actionName": "Configuration",
+      "revisionId": "e307bbe0d3fde75ebd3e7e94e80fcf5026c5e5ea",
+      "revisionSummary": "Apply  Templating\n\nCo-authored-by: core-cloud-automation[bot] <core-cloud-automation[bot]@users.noreply.github.com>\n",
+      "revisionUrl": "https://console.aws.amazon.com/codecommit/home?region=eu-west-2#/repository/aws-accelerator-config/commit/e307bbe0d3fde75ebd3e7e94e80fcf5026c5e5ea"
+    },
+    {
+      "actionName": "Source",
+      "revisionId": "cfcaccb08572af2ca8d8b0db1e342f6b921cf49b",
+      "revisionSummary": "release/v1.7.0",
+      "revisionUrl": "https://github.com/awslabs/landing-zone-accelerator-on-aws/commit/cfcaccb08572af2ca8d8b0db1e342f6b921cf49b"
+    }
+  ],
+  "trigger": {
+    "triggerType": "CloudWatchEvent",
+    "triggerDetail": "arn:aws:events:eu-west-2:850744974572:rule/AWSA-LZA-Deployment-EventRule"
+  },
+  "executionMode": "SUPERSEDED"
+}
