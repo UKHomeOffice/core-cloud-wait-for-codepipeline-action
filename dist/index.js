@@ -4041,7 +4041,7 @@ async function run() {
     try {
         const inputs = (0, helpers_1.getActionInputs)();
         console.log(`Got the following inputs`, JSON.stringify(inputs));
-        const latestPipelineExecution = exec.getExecOutput("aws", ["codepipeline", `list-pipeline-executions --pipeline-name ${inputs.pipeline_name}`]);
+        const latestPipelineExecution = exec.getExecOutput("aws", ["codepipeline", `list-pipeline-executions`, `--pipeline-name`, `AWSAccelerator-Pipeline`]);
         console.log(JSON.stringify(latestPipelineExecution));
         core.setOutput("execution_id", "execution-123");
         core.setOutput('status', "SUCCESS");
