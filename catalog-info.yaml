@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: core-cloud-wait-for-codepipeline-action
+  annotations:
+    github.com/project-slug: UKHomeOffice/core-cloud-wait-for-codepipeline-action
+spec:
+  type: service
+  owner: core-cloud-devops
+  lifecycle: experimental
+  system: core-cloud
